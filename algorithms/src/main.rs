@@ -1,25 +1,25 @@
 use rand::{
-    distributions::{Distribution, Uniform,Alphanumeric},
+    distributions::{Alphanumeric, Distribution, Uniform},
     Rng,
 };
 use rand_distr::Normal;
 fn main() {
     let mut rng = rand::thread_rng();
     let rng2: i32 = rand::random();
-    println!("{}",rng2);
+    println!("{}", rng2);
     let rng2: i32 = rand::random();
-    println!("{}",rng2);
-    println!("{}",rng2);
-    println!("{}",rng2);
+    println!("{}", rng2);
+    println!("{}", rng2);
+    println!("{}", rng2);
     let rng2: i32 = rand::random();
     let rng2: i32 = rand::random();
-    println!("{}",rng2);
-    println!("{}",rng2);
+    println!("{}", rng2);
+    println!("{}", rng2);
     let rng2: i32 = rand::random();
-    println!("{}",rng2);
-    println!("{}",rng2);
+    println!("{}", rng2);
+    println!("{}", rng2);
     let n1 = rng.gen::<u8>();
-    println!("{}",rng2);
+    println!("{}", rng2);
     let n2: u16 = rng.gen();
     let n1 = 2;
 
@@ -46,18 +46,15 @@ fn main() {
     let mut rng3 = rand::thread_rng();
     let normal = Normal::new(2.0, 3.0).unwrap();
     let v = normal.sample(&mut rng3);
-    let ads :[i32;3] = [333,33,3];
-        println!("{} is from a N(2, 9) distribution", v);
+    let ads: [i32; 3] = [333, 33, 3];
+    println!("{} is from a N(2, 9) distribution", v);
 
+    let rand_tuple = rng.gen::<(i32, bool, f64)>();
+    let rand_point: Point = rng.gen();
+    println!("Random tuple: {:?}", rand_tuple);
+    println!("Random Point: {:?}", rand_point);
 
-
-        let rand_tuple = rng.gen::<(i32, bool, f64)>();
-        let rand_point: Point = rng.gen();
-        println!("Random tuple: {:?}", rand_tuple);
-        println!("Random Point: {:?}", rand_point);
-    
-
-        let rand_string: String = rand::thread_rng()
+    let rand_string: String = rand::thread_rng()
         .sample_iter(&Alphanumeric)
         .take(30)
         .map(char::from)
@@ -65,6 +62,20 @@ fn main() {
 
     println!("{}", rand_string);
 
+    const CHARSET: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
+    abcdefghijklmnopqrstuvwxyz\
+    0123456789)(*&^%$#@!~";
+    const PASSWORD_LEN: usize = 30;
+    let mut rng3: rand::prelude::ThreadRng = rand::thread_rng();
+
+    let password: String = (0..PASSWORD_LEN)
+        .map(|_| {
+            let idx = rng3.gen_range(0..CHARSET.len());
+            CHARSET[idx] as char
+        })
+        .collect();
+
+    println!("{:?}", password);
 }
 use rand::distributions::Standard;
 #[derive(Debug)]
