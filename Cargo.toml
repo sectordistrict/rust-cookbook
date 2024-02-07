@@ -1,4 +1,4 @@
-workspace = { members = ["algorithms", "concurrency/spawn-short-lived-threads"] }
+workspace = { members = ["algorithms", "concurrency/create-a-parallel-pipeline", "concurrency/spawn-short-lived-threads"] }
 [package]
 name = "rust-cookbook"
 version = "0.1.0"
